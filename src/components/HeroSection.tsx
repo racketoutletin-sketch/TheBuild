@@ -63,7 +63,7 @@ const HeroSection = () => {
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
-          <div className="text-center lg:text-left">
+          <div className="text-center lg:text-left mt-20 md:mt-0">
             <motion.div 
               className="inline-flex items-center gap-2 glass-deep px-4 py-2 rounded-full mb-6"
               initial={{ opacity: 0, y: 20 }}
