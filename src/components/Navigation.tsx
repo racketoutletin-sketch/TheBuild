@@ -64,7 +64,7 @@ const navItems = [
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
           >
-              <a href="/#home" className="flex items-center space-x-2">
+              <a href="/" className="flex items-center space-x-2">
             <div className=" p-2 rounded-lg ">
               <img src="logo2.png" alt="Logo" className="h-12 w-30" />
             </div>
@@ -99,13 +99,19 @@ const navItems = [
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center space-x-4">
             <CommandPalette />
-            <Button variant="glass" size="sm" className="text-lg">
-              <a href="#contact" className="flex items-center space-x-2">
-              <Sparkles className="h-4 w-4" />
+            <Button
+              variant="glass"
+              size="sm"
+              className="text-lg"
+              asChild  // allows the child <a> to be rendered correctly inside Button (if using Radix/Shadcn Button)
+            >
+              <a href="/#contact" className="flex items-center space-x-2">
+                <Sparkles className="h-4 w-4" />
                 <span>Start Your Project</span>
               </a>
             </Button>
           </div>
+
 
           {/* Mobile Menu Button */}
           <motion.button
@@ -163,15 +169,6 @@ const navItems = [
                     {item.name}
                   </motion.a>
                 ))}
-                <div className="pt-4 border-t border-border space-y-2">
-                  <Button variant="glass" size="sm" className="w-full text-lg">
-                    Portfolio
-                  </Button>
-                  <Button variant="hero" size="sm" className="w-full text-lg">
-                    <Sparkles className="h-4 w-4" />
-                    Start Your Project
-                  </Button>
-                </div>
               </div>
             </motion.div>
           )}

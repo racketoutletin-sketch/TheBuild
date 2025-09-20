@@ -126,17 +126,22 @@ const ContactSection = () => {
               </div>
 
               <div>
+                <label htmlFor="phone" className="block text-sm font-medium mb-2">Phone Number</label>
+                <Input id="phone" name="phone" type="tel" placeholder="+1 (555) 123-4567" className="transition-smooth focus:shadow-card" />
+              </div>
+
+              <div>
                 <label htmlFor="service" className="block text-sm font-medium mb-2">Service Type</label>
                 <Select name="service">
                   <SelectTrigger className="transition-smooth focus:shadow-card">
                     <SelectValue placeholder="Select a service" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="website">Website Development</SelectItem>
-                    <SelectItem value="app">Mobile App</SelectItem>
-                    <SelectItem value="dashboard">Dashboard & Analytics</SelectItem>
-                    <SelectItem value="ai">AI Solutions</SelectItem>
-                    <SelectItem value="consultation">Consultation</SelectItem>
+                    <SelectItem value="Website Development">Website Development</SelectItem>
+                    <SelectItem value="Mobile App">Mobile App</SelectItem>
+                    <SelectItem value="Dashboard & Analytics">Dashboard & Analytics</SelectItem>
+                    <SelectItem value="AI Solutions">AI Solutions</SelectItem>
+                    <SelectItem value="Consultation">Consultation</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -155,7 +160,6 @@ const ContactSection = () => {
                   </SelectContent>
                 </Select>
               </div>
-
               <div>
                 <label htmlFor="message" className="block text-sm font-medium mb-2">Project Description</label>
                 <Textarea id="message" name="message" placeholder="Tell us about your project, goals, and timeline..." rows={4} className="transition-smooth focus:shadow-card" />
@@ -192,7 +196,7 @@ const ContactSection = () => {
             </DialogDescription>
           </DialogHeader>
           <DialogClose asChild>
-            <Button className="mt-4 w-full">Close</Button>
+            <Button className="mt-4 w-full" onClick={() => window.location.href = '/'}>Close</Button>
           </DialogClose>
         </DialogContent>
       </Dialog>

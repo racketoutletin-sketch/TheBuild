@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
-import { Search, ExternalLink, Mail, Phone, Code2, Sparkles } from "lucide-react";
+import { Search, ExternalLink, Mail, Phone, Code2, Sparkles, MessageSquare } from "lucide-react";
+
 
 const CommandPalette = () => {
   const [open, setOpen] = useState(false);
@@ -30,10 +31,20 @@ const CommandPalette = () => {
     {
       group: "Actions",
       items: [
-        { name: "Start Project", action: () => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" }), icon: Sparkles },
-        { name: "Email Us", action: () => window.open("mailto:hello@thebuild.com"), icon: Mail },
-        { name: "Call Us", action: () => window.open("tel:+15551234567"), icon: Phone },
-        { name: "View GitHub", action: () => window.open("https://github.com"), icon: ExternalLink },
+        { 
+          name: "Email Us", 
+          action: () => window.open(
+            "https://mail.google.com/mail/?view=cm&fs=1&to=hello@thebuild.in&su=I%20need%20more%20info", 
+            "_blank"
+          ), 
+          icon: Mail 
+        },
+        { name: "Call Us", action: () => window.open("tel:+919491147433"), icon: Phone },
+        { name: "Chat with Us on WhatsApp", action: () => {
+          const message = "Hi, I'd like to chat!";
+          const encodedMessage = encodeURIComponent(message);
+          window.open(`https://wa.me/+919491147433?text=${encodedMessage}`);
+        }, icon: MessageSquare },
       ]
     }
   ];
