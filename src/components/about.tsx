@@ -26,8 +26,8 @@ const Section: React.FC<SectionProps> = ({
   title,
   subtitle,
   children,
-  titleColor = "text-black",
-  subtitleColor = "text-gray-400",
+  titleColor = "text-foreground",
+  subtitleColor = "text-muted-foreground",
 }) => {
   return (
     <section className="py-10 sm:py-14">
@@ -41,7 +41,7 @@ const Section: React.FC<SectionProps> = ({
           <p className={`mt-4 text-lg font-semibold ${subtitleColor}`}>
             {subtitle}
           </p>
-          <div className="mt-6 mx-auto w-24 h-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full"></div>
+          <div className="mt-6 mx-auto w-24 h-1 bg-gradient-to-r from-primary to-secondary rounded-full"></div>
         </div>
         {children}
       </div>
@@ -72,15 +72,15 @@ const ProcessStep: React.FC<ProcessStepProps> = ({
     <div
       className={`flex flex-col md:flex-row items-center my-12 relative ${alignmentClass}`}
     >
-      <div className="flex-1 w-full md:w-5/12 p-8 bg-white border border-purple-500 rounded-lg shadow-lg">
+      <div className="flex-1 w-full md:w-5/12 p-8 bg-card border border-primary rounded-lg shadow-card">
         <div className={`text-center ${textAlignmentClass}`}>
-          <h3 className="text-xl font-bold mb-2 text-black">{title}</h3>
-          <p className="text-gray-400">{description}</p>
+          <h3 className="text-xl font-bold mb-2 text-foreground">{title}</h3>
+          <p className="text-muted-foreground">{description}</p>
         </div>
       </div>
 
-      <div className="absolute left-1/2 -translate-x-1/2 w-24 h-24 bg-gray-900 border-4 border-purple-500 rounded-full flex items-center justify-center z-10">
-        <Icon className="w-10 h-10 text-purple-500" />
+      <div className="absolute left-1/2 -translate-x-1/2 w-24 h-24 bg-background border-4 border-primary rounded-full flex items-center justify-center z-10">
+        <Icon className="w-10 h-10 text-primary" />
       </div>
 
       <div className="flex-1 w-full md:w-5/12"></div>
@@ -107,35 +107,15 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({
   // socials,
 }) => {
   return (
-    <div className="group relative bg-white border border-purple-500 rounded-lg overflow-hidden transition-all duration-300 hover:border-purple-500 hover:shadow-2xl hover:shadow-purple-500/20 transform hover:-translate-y-2">
+    <div className="group relative bg-card border border-primary rounded-lg overflow-hidden transition-all duration-300 hover:shadow-card transform hover:-translate-y-2">
       <img
         src={imageUrl}
         alt={name}
         className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
       />
       <div className="p-6 text-center">
-        <h3 className="text-xl font-bold text-black">{name}</h3>
-        <p className="text-purple-500">{role}</p>
-        {/* <div className="mt-4 flex justify-center space-x-4">
-          <a
-            href={socials.twitter}
-            className="text-gray-400 hover:text-white transition-colors"
-          >
-            <TwitterIcon className="w-5 h-5" />
-          </a>
-          <a
-            href={socials.github}
-            className="text-gray-400 hover:text-white transition-colors"
-          >
-            <GithubIcon className="w-5 h-5" />
-          </a>
-          <a
-            href={socials.linkedin}
-            className="text-gray-400 hover:text-white transition-colors"
-          >
-            <LinkedinIcon className="w-5 h-5" />
-          </a>
-        </div> */}
+        <h3 className="text-xl font-bold text-foreground">{name}</h3>
+        <p className="text-primary">{role}</p>
       </div>
     </div>
   );
@@ -149,8 +129,8 @@ interface TechPillProps {
 const TechPill: React.FC<TechPillProps> = ({ name }) => {
   return (
     <div className="relative group">
-      <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full blur opacity-50 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse-slow"></div>
-      <span className="relative inline-flex items-center px-6 py-2 font-semibold text-white bg-gray-800 rounded-full">
+      <div className="absolute -inset-0.5 bg-gradient-to-r from-primary to-secondary rounded-full blur opacity-50 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse-slow"></div>
+      <span className="relative inline-flex items-center px-6 py-2 font-semibold text-white bg-accent rounded-full">
         {name}
       </span>
     </div>
@@ -169,22 +149,21 @@ const App: React.FC = () => {
     {
       name: "Hari Sai",
       role: "Co Founder & Lead Developer",
-      imageUrl: "hari.png",
+      imageUrl: "hari1.png",
       socials: { github: "#", linkedin: "#", twitter: "#" },
     },
-        {
+    {
       name: "Sneha",
       role: "Frontend Developer",
-      imageUrl: "https://picsum.photos/seed/samantha/400/400",
+      imageUrl: "sneha.png",
       socials: { github: "#", linkedin: "#", twitter: "#" },
     },
     {
       name: "Kumar",
       role: "DevOps Engineer",
-      imageUrl: "https://picsum.photos/seed/samantha/400/400",
+      imageUrl: "kumar.png",
       socials: { github: "#", linkedin: "#", twitter: "#" },
     },
-   
   ];
 
   const techStack = [
@@ -204,19 +183,18 @@ const App: React.FC = () => {
     "PostgresSQL",
   ];
 
-
   return (
-    <div className="bg-white text-black min-h-screen font-sans antialiased">
+    <div className="bg-background text-foreground min-h-screen font-sans antialiased gradient-subtle">
       <main className="pt-24 px-4 sm:px-6 lg:px-8">
         {/* Hero Section */}
         <section id="about" className="text-center py-10 sm:py-5">
-          <h2 className="text-4xl lg:text-6xl font-bold mb-6 text-black">
+          <h2 className="text-4xl lg:text-6xl font-bold mb-6 text-foreground">
             About{" "}
-            <span className="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
               The Build
             </span>
           </h2>
-          <p className="mt-6 max-w-3xl mx-auto text-lg sm:text-xl text-gray-300 py-8">
+          <p className="mt-6 max-w-3xl mx-auto text-lg sm:text-xl text-muted-foreground py-8">
             We are a collective of designers, engineers, and strategists
             crafting digital experiences that fuse artistry with intelligence.
             We don't just build products; we build the future.
@@ -225,7 +203,7 @@ const App: React.FC = () => {
 
         {/* Who We Are */}
         <Section title="Who We Are" subtitle="Meet the architects of innovation">
-          <p className="max-w-4xl mx-auto text-center text-gray-400 mb-16">
+          <p className="max-w-4xl mx-auto text-center text-muted-foreground mb-16">
             Our team is our greatest asset. A diverse group of passionate
             creators united by a single mission: to push the boundaries of
             what's possible on the web and beyond. We thrive on complex
@@ -242,28 +220,37 @@ const App: React.FC = () => {
         {/* Why Choose Us */}
         <Section title="Why Choose Us?" subtitle="Our core philosophy">
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <div className="bg-white p-8 rounded-lg border border-purple-500/50">
-              <CodeIcon className="h-10 w-10 text-purple-500 mb-4" />
-              <h3 className="text-xl font-bold mb-2 text-black">Technical Excellence</h3>
-              <p className="text-gray-400">
+            <div className="bg-card p-8 rounded-lg border border-primary/50">
+              <CodeIcon className="h-10 w-10 text-primary mb-4" />
+              <h3 className="text-xl font-bold mb-2 text-foreground">
+                Technical Excellence
+              </h3>
+              <p className="text-muted-foreground">
                 We write clean, scalable, and future-proof code, leveraging the
                 latest technologies to build robust solutions that stand the
                 test of time.
               </p>
             </div>
-            <div className="bg-white p-8 rounded-lg border border-purple-500/50">
-              <UsersIcon className="h-10 w-10 text-purple-500 mb-4" />
-              <h3 className="text-xl font-bold mb-2 text-black">Client-Centric Partnership</h3>
-              <p className="text-gray-400">
+            <div className="bg-card p-8 rounded-lg border border-primary/50">
+              <UsersIcon className="h-10 w-10 text-primary mb-4" />
+              <h3 className="text-xl font-bold mb-2 text-foreground">
+                Client-Centric Partnership
+              </h3>
+              <p className="text-muted-foreground">
                 Your success is our success. We work as an extension of your
                 team, ensuring transparency, communication, and alignment at
                 every stage.
               </p>
             </div>
-            <div id='tech-stack' className="bg-white p-8 rounded-lg border border-purple-500/50">
-              <RocketIcon className="h-10 w-10 text-purple-500 mb-4" />
-              <h3 className="text-xl font-bold mb-2 text-black">Innovation at the Core</h3>
-              <p className="text-gray-400">
+            <div
+              id="tech-stack"
+              className="bg-card p-8 rounded-lg border border-primary/50"
+            >
+              <RocketIcon className="h-10 w-10 text-primary mb-4" />
+              <h3 className="text-xl font-bold mb-2 text-foreground">
+                Innovation at the Core
+              </h3>
+              <p className="text-muted-foreground">
                 We are constantly exploring new frontiers, from advanced AI
                 integrations to immersive 3D experiences, to give you a
                 competitive edge.
@@ -274,7 +261,7 @@ const App: React.FC = () => {
 
         {/* What We Make */}
         <Section title="What We Make" subtitle="Our technological playground">
-          <div  className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
+          <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
             {techStack.map((tech) => (
               <TechPill key={tech} name={tech} />
             ))}
@@ -283,8 +270,8 @@ const App: React.FC = () => {
 
         {/* How We Make It */}
         <Section title="How We Make It" subtitle="Our blueprint for success">
-          <div id='process' className="relative max-w-3xl mx-auto">
-            <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple-500/0 via-purple-500/50 to-purple-500/0"></div>
+          <div id="process" className="relative max-w-3xl mx-auto">
+            <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary/0 via-primary/50 to-primary/0"></div>
             <ProcessStep
               Icon={TargetIcon}
               step={1}

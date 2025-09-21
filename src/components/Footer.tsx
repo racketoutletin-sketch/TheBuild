@@ -33,7 +33,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-background border-t border-border">
+    <footer className="bg-background border-t border-border gradient-subtle">
       <div className="container mx-auto px-6">
         {/* Main Footer Content */}
         <div className="py-8">

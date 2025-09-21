@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play, Sparkles, Zap } from "lucide-react";
-import heroImage from "@/assets/hero-tech.jpg";
+import heroImage from "@/assets/hero-tech.png";
 import FloatingParticles from "./FloatingParticles";
 import TypingAnimation from "./TypingAnimation";
 

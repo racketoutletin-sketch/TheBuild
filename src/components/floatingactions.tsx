@@ -101,7 +101,7 @@ const FloatingActions: React.FC = () => {
         {isVisible && (
           <motion.button
             onClick={scrollToTop}
-            className="bg-primary text-white rounded-full p-3 shadow-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-opacity-50 transition-all duration-300 ease-in-out"
+            className="bg-primary text-white rounded-full p-3 shadow-lg hover:bg-accent focus:outline-none focus:ring-2 focus:ring-accent focus:ring-opacity-50 transition-all duration-300 ease-in-out"
             aria-label="Scroll to top"
             title="Scroll to top"
             initial={{ opacity: 0, y: 20 }}
