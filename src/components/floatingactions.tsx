@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from "framer-motion";
 
 const WhatsAppIcon: React.FC = () => (
-  <img src="/whatsapp.png" alt="WhatsApp" className="w-14 h-14" />
+  <img src="/whatsapp.webp" alt="WhatsApp" className="w-14 h-14" />
 );
 
 const ArrowUpIcon: React.FC = () => (

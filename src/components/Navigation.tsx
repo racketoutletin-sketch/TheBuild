@@ -66,7 +66,7 @@ const navItems = [
           >
               <a href="/" className="flex items-center space-x-2">
             <div className=" p-2 rounded-lg ">
-              <img src="logo2.png" alt="Logo" className="h-12 w-30" />
+              <img src="logo2.webp" alt="Logo" className="h-12 w-30" />
             </div>
               </a>
 

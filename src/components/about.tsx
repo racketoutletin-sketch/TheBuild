@@ -176,13 +176,13 @@ const App: React.FC = () => {
     {
       name: "Ram G",
       role: "Founder & CEO",
-      imageUrl: "ram.png",
+      imageUrl: "ram.webp",
       socials: {},
     },
     {
       name: "Hari Sai",
       role: "Co Founder & Lead Developer",
-      imageUrl: "hari1.png",
+      imageUrl: "hari1.webp",
       socials: {
         github: "https://github.com/hari-r31",
         linkedin: "https://www.linkedin.com/in/harisaithatholu",
@@ -192,13 +192,13 @@ const App: React.FC = () => {
     {
       name: "Sneha",
       role: "Frontend Developer",
-      imageUrl: "sneha.png",
+      imageUrl: "sneha.webp",
       socials: {},
     },
     {
       name: "Kumar",
       role: "DevOps Engineer",
-      imageUrl: "kumar.png",
+      imageUrl: "kumar.webp",
       socials: {},
     },
   ];
