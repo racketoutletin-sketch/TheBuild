@@ -8,3 +8,4 @@ export { default as LayersIcon } from './LayersIcon';
 export { default as GithubIcon } from './GithubIcon';
 export { default as LinkedinIcon } from './LinkedinIcon';
 export { default as TwitterIcon } from './TwitterIcon';
+export { default as PortfolioIcon } from './PortfolioIcon';

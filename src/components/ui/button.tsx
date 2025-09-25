@@ -15,7 +15,7 @@ const buttonVariants = cva(
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80 hover:scale-105",
         ghost: "hover:bg-accent hover:text-accent-foreground hover:scale-105",
         link: "text-primary underline-offset-4 hover:underline",
-        hero: "gradient-animated text-primary-foreground hover:shadow-glow hover:scale-110 font-semibold shadow-elegant animate-pulse-glow",
+        hero: "gradient-animated text-primary-foreground hover:shadow-glow hover:scale-110 font-semibold shadow-elegant",
         glass: "glass-deep text-foreground hover:bg-glass/60 hover:shadow-card hover:scale-105",
         floating: "gradient-primary text-primary-foreground shadow-glow animate-float hover:animate-pulse-glow hover:scale-110",
         neumorphic: "shadow-neumorphic bg-background text-foreground hover:shadow-glow hover:scale-105",

@@ -1,6 +1,5 @@
 import React from "react";
 
-// ================== Icons (Placeholder, replace with actual imports) ==================
 import {
   CodeIcon,
   UsersIcon,
@@ -10,10 +9,9 @@ import {
   LayersIcon,
   GithubIcon,
   LinkedinIcon,
-  TwitterIcon,
+  PortfolioIcon,
 } from "../components/icons";
 
-// ================== Section Component ==================
 interface SectionProps {
   title: string;
   subtitle: string;
@@ -49,7 +47,6 @@ const Section: React.FC<SectionProps> = ({
   );
 };
 
-// ================== ProcessStep Component ==================
 interface ProcessStepProps {
   step: number;
   title: string;
@@ -72,6 +69,7 @@ const ProcessStep: React.FC<ProcessStepProps> = ({
     <div
       className={`flex flex-col md:flex-row items-center my-12 relative ${alignmentClass}`}
     >
+      {/* Card Content */}
       <div className="flex-1 w-full md:w-5/12 p-8 bg-card border border-primary rounded-lg shadow-card">
         <div className={`text-center ${textAlignmentClass}`}>
           <h3 className="text-xl font-bold mb-2 text-foreground">{title}</h3>
@@ -79,24 +77,29 @@ const ProcessStep: React.FC<ProcessStepProps> = ({
         </div>
       </div>
 
-      <div className="absolute left-1/2 -translate-x-1/2 w-24 h-24 bg-background border-4 border-primary rounded-full flex items-center justify-center z-10">
+      {/* Icon */}
+      <div
+        className={`absolute top-1/2 -translate-y-1/2 w-24 h-24 bg-background border-4 border-primary rounded-full flex items-center justify-center z-10
+          ${step % 2 !== 0 ? "right-0 md:left-1/2 translate-x-1/2 md:-translate-x-1/2" : "left-0 md:left-1/2 -translate-x-1/2"}`}
+      >
         <Icon className="w-10 h-10 text-primary" />
       </div>
 
+      {/* Empty placeholder to maintain spacing */}
       <div className="flex-1 w-full md:w-5/12"></div>
     </div>
   );
+
 };
 
-// ================== TeamMemberCard Component ==================
 interface TeamMemberCardProps {
   name: string;
   role: string;
   imageUrl: string;
   socials: {
-    github: string;
-    linkedin: string;
-    twitter: string;
+    github?: string;
+    linkedin?: string;
+    portfolio?: string;
   };
 }
 
@@ -104,7 +107,7 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({
   name,
   role,
   imageUrl,
-  // socials,
+  socials,
 }) => {
   return (
     <div className="group relative bg-card border border-primary rounded-lg overflow-hidden transition-all duration-300 hover:shadow-card transform hover:-translate-y-2">
@@ -116,12 +119,43 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({
       <div className="p-6 text-center">
         <h3 className="text-xl font-bold text-foreground">{name}</h3>
         <p className="text-primary">{role}</p>
-      </div>
+        <div className="flex justify-center mt-4 space-x-4">
+            {socials.github && (
+            <a
+              href={socials.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-primary transition-colors duration-200"
+            >
+              <GithubIcon className="w-6 h-6" />
+            </a>
+            )}
+          {socials.linkedin && (
+            <a
+              href={socials.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-primary transition-colors duration-200"
+            >
+              <LinkedinIcon className="w-6 h-6" />
+            </a>
+          )}
+          {socials.portfolio && (
+            <a
+              href={socials.portfolio}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-primary transition-colors duration-200"
+            >
+              <PortfolioIcon className="w-6 h-6" />
+            </a>
+          )}
     </div>
+    </div>
+          </div>
   );
 };
 
-// ================== TechPill Component ==================
 interface TechPillProps {
   name: string;
 }
@@ -137,32 +171,35 @@ const TechPill: React.FC<TechPillProps> = ({ name }) => {
   );
 };
 
-// ================== Main App ==================
 const App: React.FC = () => {
   const teamMembers = [
     {
       name: "Ram G",
       role: "Founder & CEO",
       imageUrl: "ram.png",
-      socials: { github: "#", linkedin: "#", twitter: "#" },
+      socials: {},
     },
     {
       name: "Hari Sai",
       role: "Co Founder & Lead Developer",
       imageUrl: "hari1.png",
-      socials: { github: "#", linkedin: "#", twitter: "#" },
+      socials: {
+        github: "https://github.com/hari-r31",
+        linkedin: "https://www.linkedin.com/in/harisaithatholu",
+        portfolio: "https://hari-r31.github.io/Portfolio/",
+      },
     },
     {
       name: "Sneha",
       role: "Frontend Developer",
       imageUrl: "sneha.png",
-      socials: { github: "#", linkedin: "#", twitter: "#" },
+      socials: {},
     },
     {
       name: "Kumar",
       role: "DevOps Engineer",
       imageUrl: "kumar.png",
-      socials: { github: "#", linkedin: "#", twitter: "#" },
+      socials: {},
     },
   ];
 
@@ -186,7 +223,6 @@ const App: React.FC = () => {
   return (
     <div className="bg-background text-foreground min-h-screen font-sans antialiased gradient-subtle">
       <main className="pt-24 px-4 sm:px-6 lg:px-8">
-        {/* Hero Section */}
         <section id="about" className="text-center py-10 sm:py-5">
           <h2 className="text-4xl lg:text-6xl font-bold mb-6 text-foreground">
             About{" "}
@@ -201,7 +237,6 @@ const App: React.FC = () => {
           </p>
         </section>
 
-        {/* Who We Are */}
         <Section title="Who We Are" subtitle="Meet the architects of innovation">
           <p className="max-w-4xl mx-auto text-center text-muted-foreground mb-16">
             Our team is our greatest asset. A diverse group of passionate
@@ -217,7 +252,6 @@ const App: React.FC = () => {
           </div>
         </Section>
 
-        {/* Why Choose Us */}
         <Section title="Why Choose Us?" subtitle="Our core philosophy">
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             <div className="bg-card p-8 rounded-lg border border-primary/50">
@@ -259,7 +293,6 @@ const App: React.FC = () => {
           </div>
         </Section>
 
-        {/* What We Make */}
         <Section title="What We Make" subtitle="Our technological playground">
           <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
             {techStack.map((tech) => (
@@ -268,7 +301,6 @@ const App: React.FC = () => {
           </div>
         </Section>
 
-        {/* How We Make It */}
         <Section title="How We Make It" subtitle="Our blueprint for success">
           <div id="process" className="relative max-w-3xl mx-auto">
             <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary/0 via-primary/50 to-primary/0"></div>
