@@ -10,18 +10,22 @@ const ContactSection = () => {
   const [status, setStatus] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [callDialogOpen, setCallDialogOpen] = useState(false);
+  const [mapDialogOpen, setMapDialogOpen] = useState(false);
 
-  const handleCallClick = (phone: string) => {
-    window.location.href = `tel:${phone}`;
-  };
 
-  const handleWhatsAppClick = () => {
-    window.open('https://wa.me/9491147433', '_blank');
+  const handleCallClick = () => {
+    setCallDialogOpen(true);
   };
 
   const handleMapClick = () => {
-    window.open('https://maps.app.goo.gl/PqENjYKE3AsoqCh16', '_blank');
+    setMapDialogOpen(true);
   };
+
+  const handleWhatsAppClick = () => {
+    window.open("https://wa.me/9491147433", "_blank");
+  };
+
 
   const handleSendMessage = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -80,11 +84,11 @@ const ContactSection = () => {
             {/* Contact Info */}
             <div className="space-y-6 mb-8">
               {[{
-                icon: Phone, title: "Call Us", info: "+1 (555) 123-4567", action: "Schedule a call", onClick: () => handleCallClick("+15551234567")
+                icon: Phone, title: "Call Us", info: "+91 94911 47433 | +91 96159 61999", action: "Schedule a call", onClick: handleCallClick
               },{
                 icon: MessageCircle, title: "Live Chat", info: "Available 24/7", action: "Start chatting", onClick: handleWhatsAppClick
               },{
-                icon: MapPin, title: "Visit Us", info: "Bengaluru, India", action: "Get directions", onClick: handleMapClick
+                icon: MapPin, title: "Visit Us", info: "Bengaluru | Hyderbad, India", action: "Get directions", onClick: handleMapClick
               }].map(contact => (
                 <div key={contact.title} className="flex items-center gap-4 group cursor-pointer" onClick={contact.onClick}>
                   <div className="gradient-primary p-3 rounded-lg shadow-elegant group-hover:shadow-glow transition-smooth">
@@ -127,7 +131,7 @@ const ContactSection = () => {
 
               <div>
                 <label htmlFor="phone" className="block text-sm font-medium mb-2">Phone Number</label>
-                <Input id="phone" name="phone" type="tel" placeholder="+1 (555) 123-4567" className="transition-smooth focus:shadow-card" />
+                <Input id="phone" name="phone" type="tel" placeholder="+91 98765 43210" className="transition-smooth focus:shadow-card" />
               </div>
 
               <div>
@@ -200,6 +204,67 @@ const ContactSection = () => {
           </DialogClose>
         </DialogContent>
       </Dialog>
+
+      {/* Call Dialog */}
+      <Dialog open={callDialogOpen} onOpenChange={setCallDialogOpen}>
+        <DialogContent className="sm:max-w-sm">
+          <DialogHeader>
+            <DialogTitle>Select a Number to Call</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-3 mt-4">
+            <Button
+              className="w-full"
+              onClick={() => (window.location.href = "tel:+919491147433")}
+            >
+              📞 +91 94911 47433
+            </Button>
+            <Button
+              className="w-full"
+              onClick={() => (window.location.href = "tel:+919615961999")}
+            >
+              📞 +91 96159 61999
+            </Button>
+          </div>
+          <DialogClose asChild>
+            <Button variant="outline" className="mt-4 w-full">
+              Cancel
+            </Button>
+          </DialogClose>
+        </DialogContent>
+      </Dialog>
+
+      {/* Map Dialog */}
+      <Dialog open={mapDialogOpen} onOpenChange={setMapDialogOpen}>
+        <DialogContent className="sm:max-w-sm">
+          <DialogHeader>
+            <DialogTitle>Select a Location</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-3 mt-4">
+            <Button
+              className="w-full"
+              onClick={() =>
+                window.open("https://maps.app.goo.gl/PqENjYKE3AsoqCh16", "_blank")
+              }
+            >
+              📍 Bengaluru, India
+            </Button>
+            <Button
+              className="w-full"
+              onClick={() =>
+                window.open("https://maps.app.goo.gl/z3TLHyRFwpxu3QAz5", "_blank")
+              }
+            >
+              📍 Hyderabad, India
+            </Button>
+          </div>
+          <DialogClose asChild>
+            <Button variant="outline" className="mt-4 w-full">
+              Cancel
+            </Button>
+          </DialogClose>
+        </DialogContent>
+      </Dialog>
+
     </section>
   );
 };

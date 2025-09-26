@@ -11,6 +11,7 @@ const Footer = () => {
       { name: "Mobile Apps" },
       { name: "Dashboards" },
       { name: "AI Solutions" },
+      { name: "Projects" },
     ],
     company: [
       { name: "About Us", href: "#about" },

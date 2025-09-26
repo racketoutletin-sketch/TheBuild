@@ -21,6 +21,7 @@ import {
   BarChart3,
   Zap,
   CheckCircle,
+  Workflow,
 } from "lucide-react";
 
 const ServicesSection = () => {
@@ -49,7 +50,7 @@ const ServicesSection = () => {
         "Real-time Features",
         "App Store Ready",
       ],
-      gradient: "from-accent to-accent-glow",
+      gradient: "from-primary to-accent",
     },
     {
       icon: BarChart3,
@@ -62,7 +63,20 @@ const ServicesSection = () => {
         "Data Visualization",
         "API Integration",
       ],
-      gradient: "from-primary to-accent",
+      gradient: "from-accent to-primary-glow",
+    },
+    {
+      icon: Workflow,
+      title: "Projects & Guidance",
+      description:
+        "Guidance and support for final year B.Tech students on project selection, design, and implementation.",
+      features: [
+        "AI & ML",
+        "Embedded & IOT",
+        "Code Review",
+        "Presentation Skills",
+      ],
+      gradient: "from-accent to-accent-glow",
     },
   ];
 
@@ -109,7 +123,7 @@ Type of Work: ${workType}`;
         </div>
 
         {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
           {services.map((service, index) => (
             <div
               key={service.title}

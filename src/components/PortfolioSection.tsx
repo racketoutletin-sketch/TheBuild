@@ -1,12 +1,12 @@
 import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { Filter, ArrowRight, ArrowLeft } from "lucide-react";
+import { Filter, ArrowRight, ArrowLeft, Tags } from "lucide-react";
 
 const PortfolioSection = () => {
   const [activeFilter, setActiveFilter] = useState("All");
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  const filters = ["All", "Websites", "Apps", "Dashboards", "AI"];
+  const filters = ["All", "Websites", "Apps", "Dashboards", "AI", "Projects"];
 
   const projects = [
     {
@@ -52,8 +52,38 @@ const PortfolioSection = () => {
       link: "https://internship-platform-cyan.vercel.app",
       gradient: "from-accent to-primary",
     },
-    {
+     {
       id: 5,
+      title: 'IoT Pond Monitoring & Prod Enchancement System',
+      category: "Projects",
+      description: 'Smart aquaculture monitoring system with automated alerts and environmental control.',
+      image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&h=400&fit=crop',
+      tags: ['Embedded C', 'IoT Sensors', 'Twilio API', 'ESP32', 'Blynk', 'Mobile App', 'Motors'],
+      // link: 'https://github.com/Hari-r31/IOT-Based-Fish-Pond-Monitoring-its-Production-Enhancement-System',
+      gradient: "from-accent to-primary",
+    },
+    {
+      id: 6,
+      title: 'Conversational-AI-Simple-FAQ-Bot-LangGraph',
+      category: "Projects",
+      description: 'A terminal-based conversational FAQ bot using LangGraph and fuzzy matching.',
+      image: 'https://i.postimg.cc/J79NwhRg/lang.png',
+      tags: ['Python', 'LangGraph', 'FuzzyWuzzy', 'JSON', 'CLI'],
+      // link: 'https://github.com/Hari-r31/Conversational-AI-Simple-FAQ-Bot-LangGraph-',
+      gradient: "from-accent to-primary",
+    },
+    {
+      id: 7,
+      title: 'AI Plant Doctor',
+      description: 'Comprehensive plant health monitoring system combining AI image recognition with IoT sensors.',
+      category: 'Projects',
+      image: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=600&h=400&fit=crop',
+      tags: ['AI Integration', 'API Development', 'Embedded Systems', 'FastAPI', 'IoT Systems', 'Machine Learning', 'React.js', 'Supabase'],
+      // link: 'https://github.com/Hari-r31/smart-plant-doctor',
+      gradient: "from-accent to-primary",
+    },
+    {
+      id: 8,
       title: "Not Yet Deployed",
       category: "AI",
       description: "Coming Soon",
@@ -183,15 +213,17 @@ const PortfolioSection = () => {
                   </div>
 
                   {/* CTA */}
-                  <Button
-                    variant="ghost"
-                    size="sm"
+                  {project.link && (
+                    <Button
+                      variant="ghost"
+                      size="sm"
                     className="group/btn w-full justify-between"
                     onClick={() => window.open(project.link, "_blank")}
                   >
                     Visit Website
                     <ArrowRight className="h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
                   </Button>
+                  )}
                 </div>
               </div>
             ))}

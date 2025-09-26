@@ -6,7 +6,7 @@ import FloatingParticles from "./FloatingParticles";
 import TypingAnimation from "./TypingAnimation";
 
 const HeroSection = () => {
-  const typingWords = ["Websites", "Apps", "Dashboards", "AI Solutions"];
+  const typingWords = ["Websites", "Apps", "Dashboards", "AI Solutions", "Projects"];
 
   return (
     <section id="home" className="min-h-screen relative overflow-hidden flex items-center border">
