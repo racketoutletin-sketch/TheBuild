@@ -1,38 +1,85 @@
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+// App.tsx
+import React, { Suspense, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { HashLink } from "react-router-hash-link"; // ✅ new
-import Index from "./pages/Index";
-import CookiePolicy from "./pages/cookies";
-import PrivacyPolicy from "./pages/privacyPolicy";
-import TermsOfService from "./pages/terms";
-import NotFound from "./pages/NotFound";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useVersion } from "@/context/VersionContext";
+import Navbar from "@/components/Navbar";
 
 const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          {/* Homepage with scrollable sections */}
-          <Route path="/" element={<Index />} />
+// Versioned pages and UI components
+const Pages = {
+  v1: {
+    Index: React.lazy(() => import("./pages/v1/Index")),
+    PrivacyPolicy: React.lazy(() => import("./pages/v1/privacyPolicy")),
+    CookiePolicy: React.lazy(() => import("./pages/v1/cookies")),
+    TermsOfService: React.lazy(() => import("./pages/v1/terms")),
+    NotFound: React.lazy(() => import("./pages/v1/NotFound")),
+    Toaster: React.lazy(() => import("./components/v1/ui/toaster").then(mod => ({ default: mod.Toaster }))),
+    TooltipProvider: React.lazy(() => import("./components/v1/ui/tooltip").then(mod => ({ default: mod.TooltipProvider }))),
+  },
+  v2: {
+    Index: React.lazy(() => import("./pages/v2/Index")),
+    PrivacyPolicy: React.lazy(() => import("./pages/v2/privacyPolicy")),
+    CookiePolicy: React.lazy(() => import("./pages/v2/cookies")),
+    TermsOfService: React.lazy(() => import("./pages/v2/terms")),
+    NotFound: React.lazy(() => import("./pages/v2/NotFound")),
+    Toaster: React.lazy(() => import("./components/v2/ui/toaster").then(mod => ({ default: mod.Toaster }))),
+    TooltipProvider: React.lazy(() => import("./components/v2/ui/tooltip").then(mod => ({ default: mod.TooltipProvider }))),
+  },
+  v3: {
+    Index: React.lazy(() => import("./pages/v3/Index")),
+    PrivacyPolicy: React.lazy(() => import("./pages/v3/privacyPolicy")),
+    CookiePolicy: React.lazy(() => import("./pages/v3/cookies")),
+    TermsOfService: React.lazy(() => import("./pages/v3/terms")),
+    NotFound: React.lazy(() => import("./pages/v3/NotFound")),
+    Toaster: React.lazy(() => import("./components/v3/ui/toaster").then(mod => ({ default: mod.Toaster }))),
+    TooltipProvider: React.lazy(() => import("./components/v3/ui/tooltip").then(mod => ({ default: mod.TooltipProvider }))),
+  },
+};
 
-          {/* Static pages */}
-          <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
-          <Route path="/cookies" element={<CookiePolicy />} />
-          <Route path="/terms" element={<TermsOfService />} />
+const App: React.FC = () => {
+  const { version } = useVersion();
 
-          {/* Catch-all */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+  // Load version-specific CSS dynamically
+  useEffect(() => {
+    const prev = document.getElementById("version-css") as HTMLLinkElement | null;
+    if (prev) prev.remove();
+
+    const link = document.createElement("link");
+    link.id = "version-css";
+    link.rel = "stylesheet";
+    link.href = `src/styles/${version}.css`; // e.g., v1.css
+    document.head.appendChild(link);
+
+    return () => link.remove();
+  }, [version]);
+
+  const current = Pages[version as "v1" | "v2" | "v3"] || Pages.v1;
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <Suspense fallback={<div>Loading UI...</div>}>
+        <current.TooltipProvider>
+          <Suspense fallback={<div>Loading Toaster...</div>}>
+            <current.Toaster />
+          </Suspense>
+          <BrowserRouter>
+            <Navbar />
+            <Suspense fallback={<div>Loading pages...</div>}>
+              <Routes>
+                <Route path="/" element={<current.Index />} />
+                <Route path="/privacyPolicy" element={<current.PrivacyPolicy />} />
+                <Route path="/cookies" element={<current.CookiePolicy />} />
+                <Route path="/terms" element={<current.TermsOfService />} />
+                <Route path="*" element={<current.NotFound />} />
+              </Routes>
+            </Suspense>
+          </BrowserRouter>
+        </current.TooltipProvider>
+      </Suspense>
+    </QueryClientProvider>
+  );
+};
 
 export default App;

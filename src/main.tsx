@@ -1,5 +1,12 @@
-import { createRoot } from "react-dom/client";
-import App from "./App.tsx";
-import "./index.css";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import { VersionProvider } from "@/context/VersionContext";
 
-createRoot(document.getElementById("root")!).render(<App />);
+ReactDOM.createRoot(document.getElementById("root")!).render(
+  <React.StrictMode>
+    <VersionProvider>
+      <App />
+    </VersionProvider>
+  </React.StrictMode>
+);
